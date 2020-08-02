@@ -6,12 +6,7 @@ import 'package:flutter/cupertino.dart';
 
 class ServerProvider extends ChangeNotifier {
   List<Server> servers = [];
-  Server server = Server(
-      name: 'Automatic',
-      icon: 'assets/icons/automatic.png',
-      address: 'www.easyvpn.app',
-      username: 'admin8',
-      password: '123456');
+  Server server;
   int selectedIndex = 0;
   bool canChangServer = true; //是否能切换server
   bool isLoading = true;
@@ -19,9 +14,9 @@ class ServerProvider extends ChangeNotifier {
   static const String webUrl = 'https://www.jinrikanpian.net/';
   var dio = ServerProvider.createDio();
 
-  ServerProvider() {
-    servers2List();
-  }
+//  ServerProvider() {
+//    servers2List();
+//  }
 
   static Dio createDio() {
     var options = BaseOptions(
@@ -35,6 +30,7 @@ class ServerProvider extends ChangeNotifier {
   Future<void> servers2List() async {
     await getServersJosn().then((value) {
       var serversTmp = json.decode(value);
+      server = Server.fromJson(serversTmp[0]);
       serversTmp.forEach((v) {
         servers.add(Server.fromJson(v));
       });
