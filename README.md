@@ -13,7 +13,6 @@ EASYVPN是一款使用Google近年主推跨平台框架Flutter开发的提供虚
 
 ## 一，截图预览：
 
-```html
 <div align="center">
 <img src="https://www.easyvpn.app/app/screen/device-2020-08-02-011036.png" height="960" width="540" >
 
@@ -23,7 +22,6 @@ EASYVPN是一款使用Google近年主推跨平台框架Flutter开发的提供虚
 
 <img src="https://www.easyvpn.app/app/screen/device-2020-08-02-011158.png" height="960" width="540" >
  </div>
-```
 
 
 ## 二，特性介绍：
