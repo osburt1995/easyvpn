@@ -30,14 +30,13 @@ flutter run
 ```
 
 四，依赖：
-      provider: ^4.0.1
-      flutter_vpn: ^0.8.0
-      animator: ^1.0.0+5
-      flutter_spinkit: ^4.1.2
-      fluttertoast: ^7.0.2
-      dio: ^3.0.9
-      firebase_admob: ^0.9.3+2
-      rxdart: ^0.24.1
-
+1.  provider: ^4.0.1
+2.   flutter_vpn: ^0.8.0
+3.   animator: ^1.0.0+5
+4.   flutter_spinkit: ^4.1.2
+5.   fluttertoast: ^7.0.2
+6.   dio: ^3.0.9
+7.   firebase_admob: ^0.9.3+2
+8.   rxdart: ^0.24.1
 
 
