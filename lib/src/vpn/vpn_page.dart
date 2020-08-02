@@ -54,7 +54,7 @@ class _VpnPageState extends State<VpnPage> {
   void initState() {
     super.initState();
     FlutterVpn.prepare();
-    Provider.of<ServerProvider>(context,listen: false).servers2List();
+    Provider.of<ServerProvider>(context, listen: false).servers2List();
     FlutterVpn.onStateChanged.listen((s) {
       if (s == FlutterVpnState.connected) {
         buttonText = 'Disconnect';
@@ -82,7 +82,7 @@ class _VpnPageState extends State<VpnPage> {
         Provider.of<ServerProvider>(context, listen: false).canChangServer =
             true;
         // Device Disconnected
-//        AdmobInstance.instance.showInterstitialAd();
+        AdmobInstance.instance.showInterstitialAd();
 //        AdmobInstance.instance.showBannerlAd();
       }
       if (s == FlutterVpnState.genericError) {
