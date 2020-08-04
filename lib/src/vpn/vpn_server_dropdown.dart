@@ -29,11 +29,12 @@ class _VpnServerDropDownState extends State<VpnServerDropDown> {
             alignment: Alignment.center,
             child: InkWell(
               onTap: () {
-                Provider.of<ServerProvider>(context,listen: false).servers2List();
+                Provider.of<ServerProvider>(context, listen: false)
+                    .servers2List();
               },
               child: Center(
                 child:
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   Icon(Icons.update),
 //                  CircleAvatar(
 //                    radius: 12.0,

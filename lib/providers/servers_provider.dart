@@ -36,14 +36,14 @@ class ServerProvider extends ChangeNotifier {
       server = Server.fromJson(serversTmp[0]);
       serversTmp.forEach((v) async {
         servers.add(Server.fromJson(v));
-        var pingValueTmp = await ping(v['address']);
-        pingValue.add(pingValueTmp.toString());
+        await ping(v['address'], times: 1).then((value) {
+          pingValue.add(value.toString());
+        });
       });
+    }).whenComplete(() {
       canChangServer = true;
       isLoading = false;
       notifyListeners();
-    }).catchError((e) {
-      ///处理获取服务器列表失败
     });
   }
 

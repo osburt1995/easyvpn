@@ -64,7 +64,8 @@ class _VpnPageState extends State<VpnPage> {
             false;
         AdmobInstance.instance;
         Future.delayed(Duration(seconds: 5)).then((value) {
-          AdmobInstance.instance.showRewardedVideoAd();
+//          AdmobInstance.instance.showRewardedVideoAd();
+          AdmobInstance.instance.showInterstitialAd();
           AdmobInstance.instance.showBannerlAd();
         });
 
@@ -82,8 +83,6 @@ class _VpnPageState extends State<VpnPage> {
         Provider.of<ServerProvider>(context, listen: false).canChangServer =
             true;
         // Device Disconnected
-        AdmobInstance.instance.showInterstitialAd();
-//        AdmobInstance.instance.showBannerlAd();
       }
       if (s == FlutterVpnState.genericError) {
         Provider.of<ServerProvider>(context, listen: false).canChangServer =
