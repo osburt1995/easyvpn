@@ -78,6 +78,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.0.9"
+  easyping:
+    dependency: "direct main"
+    description:
+      name: easyping
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.1"
   firebase:
     dependency: transitive
     description:

@@ -26,7 +26,7 @@ class VpnApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'VPN',
+      title: 'EASYVPN',
       color: Colors.white,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

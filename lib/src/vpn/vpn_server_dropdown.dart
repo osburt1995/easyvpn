@@ -42,7 +42,7 @@ class _VpnServerDropDownState extends State<VpnServerDropDown> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
-                      'Upgrade Servers',
+                      'Servers is preparing',
                       style: TextStyle(
                           fontWeight: FontWeight.w400, fontSize: 18.0),
                     ),
