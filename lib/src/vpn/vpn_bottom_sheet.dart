@@ -74,8 +74,6 @@ class _VpnBottomSheetState extends State<VpnBottomSheet> {
   Widget build(BuildContext context) {
     final List<Server> servers =
         Provider.of<ServerProvider>(context, listen: false).servers;
-    final List pingValues =
-        Provider.of<ServerProvider>(context, listen: false).pingValue;
     if (Provider.of<ServerProvider>(context).isLoading == true) {
       return Center(
         child: CircularProgressIndicator(),
@@ -115,7 +113,15 @@ class _VpnBottomSheetState extends State<VpnBottomSheet> {
                     style:
                         TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
                   ),
-                  subtitle: Text(pingValues[index] + 'ms'),
+                  subtitle: FutureBuilder(
+                      future: Provider.of<ServerProvider>(context)
+                          .builPingWidget(index),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<Widget> snapshot) {
+                        if (snapshot.hasData) return snapshot.data;
+
+                        return Text('Waiting for ping result...');
+                      }),
                   leading: CircleAvatar(
                     radius: 15.0,
                     backgroundImage: AssetImage(servers[index].icon),

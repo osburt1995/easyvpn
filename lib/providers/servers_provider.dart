@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:easyping/easyping.dart';
 import 'package:easyvpn/model/server.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class ServerProvider extends ChangeNotifier {
   List<Server> servers = [];
@@ -12,7 +11,6 @@ class ServerProvider extends ChangeNotifier {
   int selectedIndex = 0;
   bool canChangServer = false; //是否能切换server
   bool isLoading = true;
-  List<String> pingValue = [];
 
   static const String webUrl = 'https://www.jinrikanpian.net/';
   var dio = ServerProvider.createDio();
@@ -36,11 +34,7 @@ class ServerProvider extends ChangeNotifier {
       server = Server.fromJson(serversTmp[0]);
       serversTmp.forEach((v) async {
         servers.add(Server.fromJson(v));
-        await ping(v['address'], times: 1).then((value) {
-          pingValue.add(value.toString());
-        });
       });
-    }).whenComplete(() {
       canChangServer = true;
       isLoading = false;
       notifyListeners();
@@ -62,5 +56,17 @@ class ServerProvider extends ChangeNotifier {
     server = servers[i];
     selectedIndex = i;
     notifyListeners();
+  }
+
+  Future<Widget> builPingWidget(int index) async {
+    var pingResult = await ping(servers[index].address, times: 2);
+    if (pingResult == 0.0) {
+      return Text('So slow');
+    } else {
+      return Text(
+        pingResult.toString() + 'ms',
+        style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500),
+      );
+    }
   }
 }

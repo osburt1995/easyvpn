@@ -29,8 +29,9 @@ class _VpnServerDropDownState extends State<VpnServerDropDown> {
             alignment: Alignment.center,
             child: InkWell(
               onTap: () {
-                Provider.of<ServerProvider>(context, listen: false)
-                    .servers2List();
+                Fluttertoast.showToast(
+                    msg: 'Watting for Servers result..',
+                    gravity: ToastGravity.CENTER);
               },
               child: Center(
                 child:
