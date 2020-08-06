@@ -2,9 +2,11 @@ EASYVPN是一款使用Google近年主推跨平台框架Flutter开发的提供虚
 
 **下载：**
 
-**1，Android： 下载地址：[点击下载Apk](https://www.easyvpn.app/app/1.0.1/app-release.apk "点击下载Apk")
+1，Android：
+下载地址：[点击下载Apk](https://www.easyvpn.app/app/1.0.1/app-release.apk "点击下载Apk")
 
-[去Googleplay下载](https://play.google.com/store/apps/details?id=app.easyvpn "去Googleplay下载")**
+去googleplay： [下载](https://play.google.com/store/apps/details?id=app.easyvpn "下载")
+
 
 
 2，Ios：暂无(欢迎自行构建测试)
@@ -49,4 +51,5 @@ flutter run
 6.   dio: ^3.0.9
 7.   firebase_admob: ^0.9.3+2
 8.   rxdart: ^0.24.1
+
 
