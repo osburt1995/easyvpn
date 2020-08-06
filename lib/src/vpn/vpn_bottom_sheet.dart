@@ -93,7 +93,7 @@ class _VpnBottomSheetState extends State<VpnBottomSheet> {
             Container(
               padding: const EdgeInsets.all(10.0),
               child: Text(
-                'Pick Your Server',
+                'Select Location',
                 style: TextStyle(fontSize: 18.0),
               ),
             ),
