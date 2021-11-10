@@ -49,15 +49,14 @@ flutter run
 ```
 
 ## 四，依赖：
+
 provider: ^4.0.1
 flutter_vpn: ^0.10.1
 animator: ^1.0.0+5
 flutter_spinkit: ^4.1.2
 fluttertoast: ^7.0.2
-#  dio: ^3.0.9
 firebase_admob: ^0.9.3+2
 rxdart: ^0.24.1
-#  easyping: ^1.0.1
 dart_ping: ^6.1.1
 shared_preferences: ^0.5.12+4
 formdator: ^0.12.1
@@ -69,5 +68,5 @@ font_awesome_flutter: ^8.1.0
 
 
 
-##四，可以从这里获得免费可用资源：
+## 五，可以从这里获得免费可用资源：
 [**点这里查看获得免费可用资源**](https://github.com/shipinbaoku/strongswans)
