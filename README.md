@@ -26,11 +26,11 @@ EASYVPN是一款使用Google近年主推跨平台框架Flutter开发的提供虚
 
 ## 一，截图预览：
 
-<img src="./screen/home.jpg" width="370" height="768" alt=""/><br/>
-<img src="./screen/home1.jpg" width="370" height="768" alt=""/><br/>
-<img src="./screen/connect.jpg" width="370" height="768" alt=""/><br/>
-<img src="./screen/explain%20.jpg" width="370" height="768" alt=""/><br/>
-<img src="./screen/explain%20.jpg" width="370" height="768" alt=""/><br/>
+<img src="./screen/home.jpg" width="370" height="768" alt=""/>
+<img src="./screen/home1.jpg" width="370" height="768" alt=""/>
+<img src="./screen/connect.jpg" width="370" height="768" alt=""/>
+<img src="./screen/explain%20.jpg" width="370" height="768" alt=""/>
+<img src="./screen/explain%20.jpg" width="370" height="768" alt=""/>
 
 
 ## 二，特性介绍：
