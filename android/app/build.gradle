@@ -38,7 +38,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.weilu.deer"
+        applicationId "app.easyvpn"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
