@@ -1,8 +1,9 @@
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
-import 'package:easyping/easyping.dart';
+import 'package:dart_ping/dart_ping.dart';
 import 'package:easyvpn/model/server.dart';
+import 'package:easyvpn/utils/server_service.dart';
+import 'package:easyvpn/utils/storage.dart';
 import 'package:flutter/cupertino.dart';
 
 class ServerProvider extends ChangeNotifier {
@@ -10,63 +11,78 @@ class ServerProvider extends ChangeNotifier {
   Server server;
   int selectedIndex = 0;
   bool canChangServer = false; //是否能切换server
-  bool isLoading = true;
+  //bool isLoading = true;
+  String pingResult = '暂无ping结果';
 
-  static const String webUrl = 'https://www.jinrikanpian.net/';
-  var dio = ServerProvider.createDio();
+  // static const String webUrl = 'https://www.jinrikanpian.net/';
+  // var dio = ServerProvider.createDio();
 
 //  ServerProvider() {
 //    servers2List();
 //  }
 
-  static Dio createDio() {
-    var options = BaseOptions(
-      baseUrl: webUrl,
-      connectTimeout: 10000,
-      receiveTimeout: 100000,
-    );
-    return Dio(options);
-  }
+  // static Dio createDio() {
+  //   var options = BaseOptions(
+  //     baseUrl: webUrl,
+  //     connectTimeout: 10000,
+  //     receiveTimeout: 100000,
+  //   );
+  //   return Dio(options);
+  // }
 
   Future<void> servers2List() async {
-    await getServersJosn().then((value) {
-      var serversTmp = json.decode(value);
-      server = Server.fromJson(serversTmp[0]);
-      serversTmp.forEach((v) async {
+    await getServers().then((value) {
+      //var serversTmp = json.decode(value);
+      //print(value[0]);
+      //server = Server.fromJson(value[0]);
+      servers = [];
+      value.forEach((v) {
         servers.add(Server.fromJson(v));
       });
-      canChangServer = true;
-      isLoading = false;
+      //canChangServer = true;
+      //isLoading = false;
       notifyListeners();
     });
   }
 
   ///通过api获取可用的服务器列表
-  Future<dynamic> getServersJosn() async {
-    Response response;
-    try {
-      response = await dio.get('appapi.php/api/getservers');
-    } catch (e) {
-      return null;
-    }
-    return response.data;
+  // Future<dynamic> getServersJosn() async {
+  //   Response response;
+  //   try {
+  //     response = await dio.get('appapi.php/api/getservers');
+  //   } catch (e) {
+  //     return null;
+  //   }
+  //   return response.data;
+  // }
+  ///获取用户保存的vpn配置
+  Future<dynamic> getServers() {
+    return ServerSercice.getList('servers');
   }
 
   selectServer(int i) {
+    //print(i);
+    //print('第几个');
     server = servers[i];
+    //print(server.name);
     selectedIndex = i;
     notifyListeners();
   }
 
-  Future<Widget> builPingWidget(int index) async {
-    var pingResult = await ping(servers[index].address, times: 2);
-    if (pingResult == 0.0) {
-      return Text('So slow');
-    } else {
-      return Text(
-        pingResult.toString() + 'ms',
-        style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500),
-      );
-    }
+  removeServer(index) async {
+    servers.removeAt(index);
+    print(servers);
+    await Storage.setString('servers', json.encode(servers));
+    notifyListeners();
+  }
+
+  buildPingResult(int index) async {
+    final ping = Ping(servers[index].address, count: 5);
+    // Begin ping process and listen for output
+    ping.stream.listen((event) {
+      if (event.response != null) {
+        pingResult = event.response.time.inMilliseconds.toString() + 'ms';
+      }
+    });
   }
 }

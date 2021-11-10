@@ -1,5 +1,7 @@
+import 'package:easyvpn/app/app_color.dart';
 import 'package:easyvpn/model/server.dart';
 import 'package:easyvpn/providers/servers_provider.dart';
+import 'package:easyvpn/src/vpn/vpn_bottom_sheet_add.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,24 +21,27 @@ class _VpnServerDropDownState extends State<VpnServerDropDown> {
     return Consumer<ServerProvider>(
       builder:
           (BuildContext context, ServerProvider serverProvider, Widget child) {
-        if (serverProvider.isLoading) {
+        if (serverProvider.server == null) {
           return Container(
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColor.white,
               boxShadow: [BoxShadow(blurRadius: 1.0, offset: Offset(1.0, 1.0))],
             ),
             padding: EdgeInsets.all(18.0),
             alignment: Alignment.center,
             child: InkWell(
-              onTap: () {
-                Fluttertoast.showToast(
-                    msg: 'Watting for Servers result..',
-                    gravity: ToastGravity.CENTER);
+              onTap: () => {
+                showBottomSheet(
+                    backgroundColor: Colors.white,
+                    context: context,
+                    builder: (context) {
+                      return VpnBottomSheet();
+                    })
               },
               child: Center(
                 child:
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Icon(Icons.update),
+                  Icon(Icons.add),
 //                  CircleAvatar(
 //                    radius: 12.0,
 //                    backgroundImage: AssetImage(serverProvider.server.icon),
@@ -44,7 +49,7 @@ class _VpnServerDropDownState extends State<VpnServerDropDown> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
-                      'Servers is preparing',
+                      '请选择节点',
                       style: TextStyle(
                           fontWeight: FontWeight.w400, fontSize: 18.0),
                     ),
@@ -68,7 +73,7 @@ class _VpnServerDropDownState extends State<VpnServerDropDown> {
                         .canChangServer ==
                     false) {
                   Fluttertoast.showToast(
-                      msg: 'The server cannot be switched in connection',
+                      msg: '连接中不允许切换节点',
                       gravity: ToastGravity.CENTER,
                       toastLength: Toast.LENGTH_LONG);
                 } else {
@@ -85,7 +90,7 @@ class _VpnServerDropDownState extends State<VpnServerDropDown> {
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   CircleAvatar(
                     radius: 12.0,
-                    backgroundImage: AssetImage(serverProvider.server.icon),
+                    backgroundImage: AssetImage('assets/icons/automatic.png'),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -101,6 +106,94 @@ class _VpnServerDropDownState extends State<VpnServerDropDown> {
             ),
           );
         }
+
+//         if (serverProvider.isLoading || serverProvider.server == null) {
+//           return Container(
+//             decoration: BoxDecoration(
+//               color: Colors.white,
+//               boxShadow: [BoxShadow(blurRadius: 1.0, offset: Offset(1.0, 1.0))],
+//             ),
+//             padding: EdgeInsets.all(18.0),
+//             alignment: Alignment.center,
+//             child: InkWell(
+//               onTap: () {
+//                 Fluttertoast.showToast(
+//                     msg: '请选择节点', gravity: ToastGravity.CENTER);
+//               },
+//               // onTap: () => {
+//               //   Navigator.pushReplacement(
+//               //       context,
+//               //       MaterialPageRoute(
+//               //           builder: (BuildContext context) => VpnBottomSheetAdd()))
+//               // },
+//               child: Center(
+//                 child:
+//                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+//                   Icon(Icons.add),
+// //                  CircleAvatar(
+// //                    radius: 12.0,
+// //                    backgroundImage: AssetImage(serverProvider.server.icon),
+// //                  ),
+//                   Padding(
+//                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
+//                     child: Text(
+//                       '请添加VPN配置',
+//                       style: TextStyle(
+//                           fontWeight: FontWeight.w400, fontSize: 18.0),
+//                     ),
+//                   ),
+//                   Icon(Icons.keyboard_arrow_down)
+//                 ]),
+//               ),
+//             ),
+//           );
+//         } else {
+//           return Container(
+//             decoration: BoxDecoration(
+//               color: Colors.white,
+//               boxShadow: [BoxShadow(blurRadius: 1.0, offset: Offset(1.0, 1.0))],
+//             ),
+//             padding: EdgeInsets.all(18.0),
+//             alignment: Alignment.center,
+//             child: InkWell(
+//               onTap: () {
+//                 if (Provider.of<ServerProvider>(context, listen: false)
+//                         .canChangServer ==
+//                     false) {
+//                   Fluttertoast.showToast(
+//                       msg: '连接中不允许切换节点',
+//                       gravity: ToastGravity.CENTER,
+//                       toastLength: Toast.LENGTH_LONG);
+//                 } else {
+//                   showBottomSheet(
+//                       backgroundColor: Colors.white,
+//                       context: context,
+//                       builder: (context) {
+//                         return VpnBottomSheet();
+//                       });
+//                 }
+//               },
+//               child: Center(
+//                 child:
+//                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+//                   CircleAvatar(
+//                     radius: 12.0,
+//                     backgroundImage: AssetImage('assets/icons/automatic.png'),
+//                   ),
+//                   Padding(
+//                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
+//                     child: Text(
+//                       serverProvider.server.name,
+//                       style: TextStyle(
+//                           fontWeight: FontWeight.w400, fontSize: 18.0),
+//                     ),
+//                   ),
+//                   Icon(Icons.keyboard_arrow_down)
+//                 ]),
+//               ),
+//             ),
+//           );
+//         }
       },
     );
   }

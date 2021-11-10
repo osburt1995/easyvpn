@@ -19,19 +19,29 @@ version: 1.0.4+4
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
+#  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   provider: ^4.0.1
-  flutter_vpn: ^0.8.0
+  flutter_vpn: ^0.10.1
   animator: ^1.0.0+5
   flutter_spinkit: ^4.1.2
   fluttertoast: ^7.0.2
-  dio: ^3.0.9
+#  dio: ^3.0.9
   firebase_admob: ^0.9.3+2
   rxdart: ^0.24.1
-  easyping: ^1.0.1
+#  easyping: ^1.0.1
+  dart_ping: ^6.1.1
+  shared_preferences: ^0.5.12+4
+  formdator: ^0.12.1
+  curved_navigation_bar: ^0.3.7
+  flutter_screenutil: ^5.0.0+2
+  google_fonts: ^1.1.2
+  url_launcher: ^5.7.8
+  font_awesome_flutter: ^8.1.0
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

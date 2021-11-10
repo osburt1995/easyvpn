@@ -11,6 +11,7 @@ if (flutterRoot == null) {
     throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
+
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
     flutterVersionCode = '1'
@@ -24,31 +25,26 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-// 1. 代码配置在android节点的上面
-def keystorePropertiesFile = rootProject.file("key.properties")
+
+def keystorePropertiesFile = rootProject.file("app/key.properties")
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-android {
-    compileSdkVersion 28
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
+android {
+    compileSdkVersion 29
 
     lintOptions {
         disable 'InvalidPackage'
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "app.easyvpn"
-        minSdkVersion 16
+        applicationId "com.weilu.deer"
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
 
-    //2. buildTypes节点上面配置
     signingConfigs {
         release {
             keyAlias keystoreProperties['keyAlias']
@@ -57,22 +53,23 @@ android {
             storePassword keystoreProperties['storePassword']
         }
     }
+
     buildTypes {
-        release {
-            useProguard false
+        debug {
             signingConfig signingConfigs.release
         }
-
-        debug {
-            // TODO: Add your own signing config for the release build.
+        release {
+            // flutter build apk
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
+            // https://github.com/flutter/flutter/issues/47462  #48015
+            // #58967 gradle 4.0.0
+            shrinkResources false
+            zipAlignEnabled false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
         }
-//        debug {
-//            // TODO: Add your own signing config for the release build.
-//            // Signing with the debug keys for now, so `flutter run --release` works.
-//            signingConfig signingConfigs.debug
-//        }
     }
 }
 
