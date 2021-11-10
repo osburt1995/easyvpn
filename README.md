@@ -25,11 +25,12 @@ EASYVPN是一款使用Google近年主推跨平台框架Flutter开发的提供虚
 2，使用本源码构建的App，请严格遵守所在地法律规定**
 
 ## 一，截图预览：
-![在这里插入图片描述](./screen/home.jpg)
-![在这里插入图片描述](./screen/home1.jpg)
-![在这里插入图片描述](./screen/connect.jpg)
-![在这里插入图片描述](./screen/explain%20.jpg)
-![在这里插入图片描述](./screen/setting.jpg)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/26b090b0776149a586e9f7fde0924014.jpg?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YiY5by66KW_5ZOl5ZOl,size_11,color_FFFFFF,t_70,g_se,x_16#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/5c8e3acf3347493da16dcab9038bd481.jpg?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YiY5by66KW_5ZOl5ZOl,size_11,color_FFFFFF,t_70,g_se,x_16#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/bc1620341abd43998186d019d7413991.jpg?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YiY5by66KW_5ZOl5ZOl,size_11,color_FFFFFF,t_70,g_se,x_16#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/32c978d456834fc8b8897e28aa500f44.jpg?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YiY5by66KW_5ZOl5ZOl,size_11,color_FFFFFF,t_70,g_se,x_16#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/4ecfe6d6e5eb4c3386129f905262f000.jpg?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YiY5by66KW_5ZOl5ZOl,size_11,color_FFFFFF,t_70,g_se,x_16#pic_center)
 
 
 ## 二，特性介绍：
