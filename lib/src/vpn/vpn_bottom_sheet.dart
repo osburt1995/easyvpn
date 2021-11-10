@@ -90,7 +90,7 @@ class _VpnBottomSheetState extends State<VpnBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Server> servers =
+    List<Server> servers =
         Provider.of<ServerProvider>(context, listen: false).servers;
     return Container(
       decoration: BoxDecoration(
@@ -145,7 +145,7 @@ class _VpnBottomSheetState extends State<VpnBottomSheet> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '本应用可以添加支持IKEv2协议的服务器，请自行添加可用资源。',
+                              '基于安全，本应用需要自行添加可用资源，还请各位自己动手',
                               style: GoogleFonts.lato(
                                 textStyle: TextStyle(
                                   fontWeight: FontWeight.w900,
@@ -155,7 +155,7 @@ class _VpnBottomSheetState extends State<VpnBottomSheet> {
                               ),
                             ),
                             Text(
-                              '立即查看配置教程',
+                              '获取免费资源和教程',
                               style: GoogleFonts.teko(
                                 textStyle: TextStyle(
                                   fontWeight: FontWeight.w600,
@@ -172,32 +172,39 @@ class _VpnBottomSheetState extends State<VpnBottomSheet> {
                 : ListView.builder(
                     itemCount: servers.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final item = servers[index].name;
-
+                      final item = index.toString();
+                      final name = servers[index].name;
                       return Dismissible(
                         // Each Dismissible must contain a Key. Keys allow Flutter to
                         // uniquely identify Widgets.
                         key: new Key(item),
                         // We also need to provide a function that will tell our app
                         // what to do after an item has been swiped away.
-                        onDismissed: (direction) async {
+                        confirmDismiss: (direction) async {
                           if (Provider.of<ServerProvider>(context,
                                       listen: false)
                                   .selectedIndex ==
                               index) {
                             Scaffold.of(context).showSnackBar(
-                                new SnackBar(content: new Text("选中的节点无法删除")));
+                                new SnackBar(content: new Text("选中状态的节点无法删除")));
+                            return false;
                           } else {
                             servers.removeAt(index);
+
                             ///删除本地储存
-                            List tempList = [];
+                            List<Server> tempList = [];
                             tempList.addAll(servers);
                             await Storage.setString(
                                 'servers', json.encode(tempList));
+                            setState(() {
+                              servers = tempList;
+                            });
                             Scaffold.of(context).showSnackBar(
-                                new SnackBar(content: new Text("$item 已经删除")));
+                                new SnackBar(content: new Text("$name 已经删除")));
+                            return true;
                           }
                         },
+                        onDismissed: (direction) async {},
                         // Show a red background as the item is swiped away
                         background: Container(color: Colors.yellow),
                         child: ListTile(

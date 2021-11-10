@@ -73,6 +73,7 @@ class _VpnPageState extends State<VpnPage> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
+    Provider.of<ServerProvider>(context, listen: false).servers2List();
     //ServerSercice.removeList('servers');
     FlutterVpn.prepare();
     FlutterVpn.onStateChanged.listen((s) {
@@ -108,11 +109,8 @@ class _VpnPageState extends State<VpnPage> with AutomaticKeepAliveClientMixin {
       if (s == FlutterVpnState.genericError) {
         Provider.of<ServerProvider>(context, listen: false).canChangServer =
             true;
-        Fluttertoast.showToast(
-            msg:
-                'Connection failed. Please check the network or switch VPN server',
-            gravity: ToastGravity.CENTER,
-            toastLength: Toast.LENGTH_LONG);
+        Scaffold.of(context).showSnackBar(
+            new SnackBar(content: new Text("连接失败，请切换节点或检查您的网络连接")));
         FlutterVpn.disconnect();
       }
       setState(() {
@@ -123,7 +121,6 @@ class _VpnPageState extends State<VpnPage> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<ServerProvider>(context, listen: false).servers2List();
     return Container(
       color: AppColor.BLACK,
       child: SafeArea(
@@ -327,10 +324,12 @@ class _VpnPageState extends State<VpnPage> with AutomaticKeepAliveClientMixin {
                           null) {
                         Provider.of<ServerProvider>(context, listen: false).canChangServer =
                         true;
-                        Fluttertoast.showToast(
-                            msg: '请选择或添加节点',
-                            gravity: ToastGravity.CENTER,
-                            toastLength: Toast.LENGTH_LONG);
+                        Scaffold.of(context).showSnackBar(
+                            new SnackBar(content: new Text("请选择或添加节点")));
+                        // Fluttertoast.showToast(
+                        //     msg: '请选择或添加节点',
+                        //     gravity: ToastGravity.CENTER,
+                        //     toastLength: Toast.LENGTH_LONG);
                       } else {
                         onConnect();
                       }

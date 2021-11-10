@@ -333,11 +333,11 @@ class _ClearSubmitBar extends StatelessWidget {
             if (_fkey.currentState?.validate() ?? false) {
               _fkey.currentState?.save();
               Toast.show('保存成功');
-              Navigator.pop(context, '完成');
-              // Navigator.pushReplacement(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (BuildContext context) => HomeScreen()));
+              //Navigator.pop(context, '完成');
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => HomeScreen()));
               //_showDialog(context);
               ServerSercice.setData('servers', _data);
             }

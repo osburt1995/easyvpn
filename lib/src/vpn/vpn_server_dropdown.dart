@@ -72,10 +72,8 @@ class _VpnServerDropDownState extends State<VpnServerDropDown> {
                 if (Provider.of<ServerProvider>(context, listen: false)
                         .canChangServer ==
                     false) {
-                  Fluttertoast.showToast(
-                      msg: '连接中不允许切换节点',
-                      gravity: ToastGravity.CENTER,
-                      toastLength: Toast.LENGTH_LONG);
+                  Scaffold.of(context).showSnackBar(
+                      new SnackBar(content: new Text("连接中不可切换节点")));
                 } else {
                   showBottomSheet(
                       backgroundColor: Colors.white,
