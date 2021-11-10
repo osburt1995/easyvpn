@@ -39,7 +39,7 @@ class ServerProvider extends ChangeNotifier {
       value.forEach((v) {
         servers.add(Server.fromJson(v));
       });
-      canChangServer = true;
+      //canChangServer = true;
       //isLoading = false;
       notifyListeners();
     });

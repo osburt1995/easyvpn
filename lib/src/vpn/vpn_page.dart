@@ -43,14 +43,25 @@ class _VpnPageState extends State<VpnPage> with AutomaticKeepAliveClientMixin {
         Provider.of<ServerProvider>(context, listen: false).server.password;
     if (state == FlutterVpnState.connected) {
       FlutterVpn.disconnect();
+      Provider.of<ServerProvider>(context, listen: false).canChangServer = true;
       setState(() {
         isConnected = false;
       });
-    } else {
+    } else if (state == FlutterVpnState.connecting) {
+      Provider.of<ServerProvider>(context, listen: false).canChangServer =
+          false;
+    } else if (state == FlutterVpnState.disconnected) {
       FlutterVpn.simpleConnect(address, username, password);
+      Provider.of<ServerProvider>(context, listen: false).canChangServer =
+          false;
       setState(() {
         isConnected = true;
       });
+    } else if (state == FlutterVpnState.disconnecting) {
+      Provider.of<ServerProvider>(context, listen: false).canChangServer =
+          false;
+    } else if (state == FlutterVpnState.genericError) {
+      Provider.of<ServerProvider>(context, listen: false).canChangServer = true;
     }
   }
 
@@ -151,7 +162,9 @@ class _VpnPageState extends State<VpnPage> with AutomaticKeepAliveClientMixin {
                   ],
                 ),
               ),
-              Expanded(child: buildBody(context),),
+              Expanded(
+                child: buildBody(context),
+              ),
             ],
           ),
         ),
@@ -312,6 +325,8 @@ class _VpnPageState extends State<VpnPage> with AutomaticKeepAliveClientMixin {
                       if (Provider.of<ServerProvider>(context, listen: false)
                               .server ==
                           null) {
+                        Provider.of<ServerProvider>(context, listen: false).canChangServer =
+                        true;
                         Fluttertoast.showToast(
                             msg: '请选择或添加节点',
                             gravity: ToastGravity.CENTER,

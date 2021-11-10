@@ -181,15 +181,22 @@ class _VpnBottomSheetState extends State<VpnBottomSheet> {
                         // We also need to provide a function that will tell our app
                         // what to do after an item has been swiped away.
                         onDismissed: (direction) async {
-                          servers.removeAt(index);
-
-                          ///删除本地储存
-                          List tempList = [];
-                          tempList.addAll(servers);
-                          await Storage.setString(
-                              'servers', json.encode(tempList));
-                          Scaffold.of(context).showSnackBar(
-                              new SnackBar(content: new Text("$item 已经删除")));
+                          if (Provider.of<ServerProvider>(context,
+                                      listen: false)
+                                  .selectedIndex ==
+                              index) {
+                            Scaffold.of(context).showSnackBar(
+                                new SnackBar(content: new Text("选中的节点无法删除")));
+                          } else {
+                            servers.removeAt(index);
+                            ///删除本地储存
+                            List tempList = [];
+                            tempList.addAll(servers);
+                            await Storage.setString(
+                                'servers', json.encode(tempList));
+                            Scaffold.of(context).showSnackBar(
+                                new SnackBar(content: new Text("$item 已经删除")));
+                          }
                         },
                         // Show a red background as the item is swiped away
                         background: Container(color: Colors.yellow),
