@@ -61,11 +61,8 @@ class ServerProvider extends ChangeNotifier {
   }
 
   selectServer(int i) {
-    //print(i);
-    //print('第几个');
-    server = servers[i];
-    //print(server.name);
     selectedIndex = i;
+    server = servers[i];
     notifyListeners();
   }
 

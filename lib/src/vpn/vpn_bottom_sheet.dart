@@ -118,7 +118,7 @@ class _VpnBottomSheetState extends State<VpnBottomSheet> {
                     child: InkWell(
                       onTap: () {
                         customLaunch(
-                            'https://www.strongswans.net/index.php/knowledgebase/7/%E5%90%84%E7%A7%8D%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4.html');
+                            'https://www.strongswans.net/index.php/store/vpn');
                         // Navigator.push(
                         //   context,
                         //   SlideLeftTransition(IntermittentScreen()),
@@ -145,7 +145,7 @@ class _VpnBottomSheetState extends State<VpnBottomSheet> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '基于安全，本应用需要自行添加可用资源，还请各位自己动手',
+                              '基于安全，本应用需要自行添加可用资源，还请各位自己动手!',
                               style: GoogleFonts.lato(
                                 textStyle: TextStyle(
                                   fontWeight: FontWeight.w900,
@@ -155,7 +155,7 @@ class _VpnBottomSheetState extends State<VpnBottomSheet> {
                               ),
                             ),
                             Text(
-                              '获取免费资源和教程',
+                              '立即获取免费账号',
                               style: GoogleFonts.teko(
                                 textStyle: TextStyle(
                                   fontWeight: FontWeight.w600,
