@@ -118,7 +118,7 @@ class _VpnBottomSheetState extends State<VpnBottomSheet> {
                     child: InkWell(
                       onTap: () {
                         customLaunch(
-                            'https://www.strongswans.net/index.php/store/vpn');
+                            'https://www.strongswans.net/dl.php?type=d&id=2');
                         // Navigator.push(
                         //   context,
                         //   SlideLeftTransition(IntermittentScreen()),
@@ -145,7 +145,7 @@ class _VpnBottomSheetState extends State<VpnBottomSheet> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '基于安全，本应用需要自行添加可用资源，还请各位自己动手!',
+                              '本应用需要自行添加可用资源，如果需要一键连接VPN',
                               style: GoogleFonts.lato(
                                 textStyle: TextStyle(
                                   fontWeight: FontWeight.w900,
@@ -155,7 +155,7 @@ class _VpnBottomSheetState extends State<VpnBottomSheet> {
                               ),
                             ),
                             Text(
-                              '立即获取免费账号',
+                              '请下载联合VPN',
                               style: GoogleFonts.teko(
                                 textStyle: TextStyle(
                                   fontWeight: FontWeight.w600,
@@ -173,7 +173,7 @@ class _VpnBottomSheetState extends State<VpnBottomSheet> {
                     itemCount: servers.length,
                     itemBuilder: (BuildContext context, int index) {
                       final item = index.toString();
-                      final name = servers[index].name;
+                      final name = servers[index].name??servers[index].name;
                       return Dismissible(
                         // Each Dismissible must contain a Key. Keys allow Flutter to
                         // uniquely identify Widgets.

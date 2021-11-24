@@ -213,6 +213,12 @@ class _PasswordField extends StatelessWidget {
       //   ReqLen.range(4, 8, short: 'at least 4 chars', long: 'at most 8 chars'),
       //   _extra,
       // ),
+      validator: (value) {
+        if (value.isEmpty) {
+          return '密码必填';
+        }
+        return null;
+      },
       keyboardType: TextInputType.visiblePassword,
       decoration: InputDecoration(
         labelText: _label,
@@ -254,6 +260,12 @@ class _SubField extends StatelessWidget {
     return TextFormField(
       onSaved: _onSaved,
       onChanged: _onChanged,
+      validator: (value) {
+        if (value.isEmpty) {
+          return '配置名必填';
+        }
+        return null;
+      },
       // validator: Pair(
       //   ReqLen.range(4, 8, short: 'at least 4 chars', long: 'at most 8 chars'),
       //   _extra,

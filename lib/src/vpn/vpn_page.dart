@@ -2,7 +2,6 @@ import 'package:easyvpn/app/app_color.dart';
 import 'package:easyvpn/model/server.dart';
 import 'package:easyvpn/providers/servers_provider.dart';
 import 'package:easyvpn/src/vpn/vpn_bottom_sheet.dart';
-import 'package:easyvpn/utils/admob_instance.dart';
 import 'package:easyvpn/utils/server_service.dart';
 import 'package:easyvpn/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -83,12 +82,12 @@ class _VpnPageState extends State<VpnPage> with AutomaticKeepAliveClientMixin {
         statusColor = Colors.green;
         Provider.of<ServerProvider>(context, listen: false).canChangServer =
             false;
-        AdmobInstance.instance;
-        Future.delayed(Duration(seconds: 5)).then((value) {
-          AdmobInstance.instance.showRewardedVideoAd();
-          //AdmobInstance.instance.showInterstitialAd();
-          //AdmobInstance.instance.showBannerlAd();
-        });
+        // AdmobInstance.instance;
+        // Future.delayed(Duration(seconds: 5)).then((value) {
+        //   AdmobInstance.instance.showRewardedVideoAd();
+        //   //AdmobInstance.instance.showInterstitialAd();
+        //   //AdmobInstance.instance.showBannerlAd();
+        // });
 
         // Device Connected
       }
@@ -98,7 +97,7 @@ class _VpnPageState extends State<VpnPage> with AutomaticKeepAliveClientMixin {
         // Device Connected
       }
       if (s == FlutterVpnState.disconnected) {
-        AdmobInstance.instance.showInterstitialAd();
+        // AdmobInstance.instance.showInterstitialAd();
         buttonText = 'Connect Now';
         statusLabel = 'Disconnected';
         statusColor = Colors.grey;
