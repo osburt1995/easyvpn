@@ -1,10 +1,10 @@
 class Server {
   //int id;
-  String name;
-  String icon;
-  String address;
-  String username;
-  String password;
+  String? name;
+  String? icon;
+  String? address;
+  String? username;
+  String? password;
 
   Server({
     //this.id,
@@ -15,7 +15,7 @@ class Server {
     this.password,
   });
 
-  Server.fromJson(Map<String, dynamic> json) {
+  Server.fromJson(Map<dynamic, dynamic> json) {
     //id = json['id'];
     name = json['name'];
     icon = json['icon'];

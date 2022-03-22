@@ -15,42 +15,42 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 3.0.0+7
+version: 4.0.0+40
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
-#  sdk: ">=2.12.0 <3.0.0"
+  #sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  provider: ^4.0.1
-  flutter_vpn: ^0.10.1
-  animator: ^1.0.0+5
-  flutter_spinkit: ^4.1.2
-  fluttertoast: ^7.0.2
-#  dio: ^3.0.9
-#  firebase_admob: ^0.9.3+2
-  rxdart: ^0.24.1
-#  easyping: ^1.0.1
-  dart_ping: ^6.1.1
-  shared_preferences: ^0.5.12+4
-  formdator: ^0.12.1
-  curved_navigation_bar: ^0.3.7
-  flutter_screenutil: ^5.0.0+2
-  google_fonts: ^1.1.2
-  url_launcher: ^5.7.8
-  font_awesome_flutter: ^8.1.0
+  flutter_svg: ^0.23.0+1
+  provider: ^6.0.1
+  shared_preferences: ^2.0.9
+  flutter_vpn:
+    # When depending on this package from a real application you should use:
+    #   flutter_vpn: ^x.y.z
+    # See https://dart.dev/tools/pub/dependencies#version-constraints
+    # The example app is bundled with the plugin so we use a path dependency on
+    # the parent directory to use the current plugin's version.
+    path: ./flutter_vpn
+  fluttertoast: ^8.0.9
+  google_fonts: ^2.1.1
+  flutter_screenutil: ^5.1.1
+  reactive_forms: ^11.0.1
+  rflutter_alert: ^2.0.4
+  url_launcher: ^6.0.18
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.3
-
+  cupertino_icons: ^1.0.4
+dependency_overrides:
+  decimal: 1.5.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.7.5
+  flutter_launcher_icons: ^0.9.2
 flutter_icons:
   android: "ic_launcher"
   ios: false

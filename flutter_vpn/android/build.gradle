@@ -1,0 +1,77 @@
+group 'io.xdea.flutter_vpn'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.4.21'
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // For downloading prebuilt libs
+        classpath 'de.undercouch:gradle-download-task:4.0.2'
+    }
+}
+
+apply plugin: 'de.undercouch.download'
+
+// Download prebuilt native libs.
+task downloadNativeLib(type: Download) {
+    src 'https://github.com/X-dea/Flutter_VPN/releases/download/v0.10.0/strongswan_libs_v5.9.1.zip'
+    dest "$buildDir/native.zip"
+}
+
+task getNativeFile(dependsOn: downloadNativeLib, type: Copy) {
+    from zipTree("$buildDir/native.zip")
+    into "src/main/libs"
+}
+
+// Automatically download native libs before build when doesn't exist.
+tasks.whenTaskAdded {
+    task ->
+        if (task.name == "preBuild" && !(file('./src/main/libs').exists())) {
+            preBuild.dependsOn getNativeFile
+        }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 30
+
+    sourceSets.main {
+        jni.srcDirs = [] // Disables the default ndk-build call (with on-the-fly Android.mk files)
+        jniLibs.srcDir 'src/main/libs'
+        java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        minSdkVersion 16
+    }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // TODO: Remove when custom icon available.
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+}
